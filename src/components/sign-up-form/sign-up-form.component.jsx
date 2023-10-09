@@ -34,10 +34,13 @@ const SignUpForm = () => {
     }
 
     try {
+      console.log("signup startinfg");
       const { user } = await createAuthUserWithEmailAndPassword(
         email,
         password
       );
+
+      console.log("user set in sign up")
 
       const userDocRef = await createUserDocumentFromAuth(user, {
         displayName,

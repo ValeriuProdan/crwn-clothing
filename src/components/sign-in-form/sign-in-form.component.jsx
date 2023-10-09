@@ -4,7 +4,6 @@ import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
 
 import {
-  createUserDocumentFromAuth,
   signInWithGooglePopup,
   singInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
@@ -30,16 +29,8 @@ const SignInForm = () => {
     reserFormFields();
 
     try {
-      const response = await singInAuthUserWithEmailAndPassword(
-        email,
-        password
-      );
+      await singInAuthUserWithEmailAndPassword(email, password);
 
-      console.log(response);
-      /*
-      const userDocRef = await createUserDocumentFromAuth(user, {
-        displayName,
-      });*/
       reserFormFields();
     } catch (error) {
       console.log(error);
@@ -57,8 +48,8 @@ const SignInForm = () => {
 
   const signInWithGoogle = async () => {
     try {
-      const { user } = await signInWithGooglePopup();
-      await createUserDocumentFromAuth(user);
+      await signInWithGooglePopup();
+
       reserFormFields();
     } catch (error) {
       console.log(error);
